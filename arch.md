@@ -3,9 +3,10 @@
 
 ## Download the arch and window iso.
 
-dd if=<PATH TO ISO> of=<PATH TO USB> bs=4096 status=progress
-
 ex:
+```
+dd if=<PATH TO ISO> of=<PATH TO USB> bs=4096 status=progress
+```
 
 ```sh
 dd if=$HOME/Downloads/archlinux-2020.11.01-x86_64.iso of=/dev/sdb1 status=progress
@@ -16,7 +17,7 @@ Insert the usb drive and boot on it. It's better to have two usb drive
 But one can be enough  if you use dd to make the bootable needed usb drive.
 
 
-Troubleshooting:
+### Troubleshooting:
 
 * Be carefull i saw some issue on OSX to create bootable image for window
 
@@ -32,10 +33,10 @@ Sources for help:
 ## Prepare EFI
 
 The Window installer will only create a partition of 100M.
+To avoid this, you can create the EFI partition before running the window installation.
 I recommand to create your own before to size it as you whish 
-To avoid this, can create the EFI partition before running the window installation.
 
-## Partioning and format the disk
+### Partioning and format the disk
 
 
 We boot the arch iso to access sgdisk
@@ -85,7 +86,7 @@ mkfs.ext4 /dev/mapper/boot -L boot
 
 ## Install window 
 
-Change a size at the end of the disk used.
+You can create a parititon with the window install and keep the end of the disk for linux
 The window installer will use the EFI partition and add its own entry
 This will allow you to define the size of the EFI partiion and not deal with the 100M from the windown installer
 When window is installed, we are ready to process the installation.
@@ -95,10 +96,9 @@ It's a choice i did to have the boot efi and grub at the begininig of the disk.
 Feel like you want, just after the installation do the GRUB and BOOT partionning/formattage of the disks.
 
 
-
 ## Install arch linux
 
-## Setting environment 
+### Setting environment 
 
 ```
 timedatectl set-ntp true
@@ -156,7 +156,7 @@ lvcreate -l 80%FREE -n home arch
 mkfs.ext4 /dev/mapper/arch-home -L home 
 ```
 
-## Mounting the filesystem
+### Mounting the filesystem
 
 In order to generate the fstab locate in the /etc/fstab
 We need to mount all partition 
@@ -187,12 +187,13 @@ mount /dev/mapper/arch-home /mnt/home
 swapon /dev/mapper/arch-swap
 ```
 
-## Install system and some needed package
+### Install system and some needed package
 
+```
 pacstrap /mnt base linux linux-firmware lvm2 vim dhcpcd 
+```
 
-
-## System configuration
+### System configuration
 
 ```
 # You can also use the -L instead of -U to use label disk
@@ -203,7 +204,7 @@ sed -i 's/relatime/noatime/g' /mnt/etc/fstab
 
 ```
 
-## Enter inside 
+### Enter inside 
 
 
 ```
@@ -212,13 +213,13 @@ arch-root /mnt
 
 
 
-# update zone info 
+#### update zone info 
 ```
 ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 hwclock --systohc
 ```
 
-## Set language to us utf-8
+#### Set language to us utf-8
 
 ```
 # Localization
@@ -229,9 +230,7 @@ echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 
 ```
 
-#  Network
-
-## Hostname 
+#### Hostname 
 
 ```
 echo '<YOUR HOSTNAME>' > /etc/hostname
@@ -243,7 +242,7 @@ echo "::1             localhost" >> /etc/hosts
 echo "127.0.0.1       domain.localdomain" >> /etc/hosts
 ```
 
-# Disk opening at boot time
+#### Disk opening at boot time
 
 Source:
 * https://wiki.archlinux.fr/mkinitcpio#Hooks
@@ -272,7 +271,7 @@ lvm                     UUID=                             none    luks
 In this example we use grub as it allow multiple luks at boot time
 
 
-## Install and setup
+### Install and setup
 ```
 pacman -S grub
 # Said to grub that we use have luks partition
@@ -309,7 +308,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 
-## Configuration of mkinitcpio
+### Configuration of mkinitcpio
 
 mkinitcpio will load your configuration and apply them to create the initramfs
 Ex: the hooks sd-encrypt will add the /etc/crypptab.initramfs as /etc/crypttab to load the luks partition (useful in our case)
@@ -328,15 +327,19 @@ Sources:
 mkinitcpio -p linux
 ```
 
-## Add a root passwd to be able to debug if needed
+## End of installation
+
+### Add a root passwd to be able to debug if needed
 ```
 passwd
-
+reboot
 ```
-reboot should be installed 
 
+Now the system should boot
 
-## Enable network
+## Post installation
+
+### Enable network
 ex: systemd networkd
 https://wiki.archlinux.org/index.php/Network_configuration
 
@@ -371,17 +374,17 @@ pacman -Sy xorg
 
 Source: https://wiki.archlinux.fr/startx
 
-## install driver
+### install driver
 ```
 ```
-## Install window management
+### Install window management
 
 ```
 pacman -Sy i3
 echo "exec i3 >> ~/.xinit"
 ```
 
-## Install next package in an other directory to keep the minimal package here
+### Install next package in an other directory to keep the minimal package here
 
 In /etc/pacman.conf uncomment the RootDir and change it for /usr/local for example
 Next package will be install there
