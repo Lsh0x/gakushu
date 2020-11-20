@@ -400,7 +400,12 @@ The default vesa display driver will work with most video cards, but performance
 
 ```
 pacman -Sy nvidia
+# Generate the xorg config
+nvidia-xconfig
 ```
+
+Source:
+* https://wiki.archlinux.org/index.php/
 
 ### Xrandr to setup automatically the screen
 
