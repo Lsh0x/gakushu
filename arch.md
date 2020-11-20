@@ -437,6 +437,7 @@ systemctl enable ligthdm.service
 pacman -Sy ligthdm-webkit2-greeters lightdm-webkit-theme-litarvan
 # Edit /etc/ligthdm/lightdm.conf
 # Change greeter-session to greeter-session=lightdm-webkit2-greeter
+#Edit: /etc/lightdm/lightdm-webkit2-greeter.conf
 # Change webkit-theme to webkit-theme=litarvan
 
 ```
