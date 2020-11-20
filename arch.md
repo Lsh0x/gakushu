@@ -453,18 +453,17 @@ Some others learning stuff will come.
 ## Tips
 
 ### Pacman hooks
-Let create a trace of installed package.
-Can be useful for restauration of the system.
+Let create a backup of installed package with the date.
 The following command give you the installed packages on you system.
 ```
 pacman -Qqe
 ```
 Pacman allow you to create hooks related to its own use.
-Pacman read from `/etc/pacman.d/hooks the .hook 
+Pacman read from `/etc/pacman.d/hooks the .hook`
 
 For example we can create a hooks to generate the installed program after each packet installation.
 It will create a file with the date in the /var/pkgs directory like `2020-11-20_19:21:50-current-pkgs.txt`
-And copy it to `/var/pkgs/prev/2020-11-20_19:21:50-pkgs.txt`
+And copy it to `/var/pkgs/prev/2020-11-20_19:21:50-pkgs.txt` allowing to keep trace on time.
 
 ```
 # For the hooks file
