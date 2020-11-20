@@ -450,7 +450,42 @@ It also allow you to go deeper in the configuration.
 Some others learning stuff will come.
 
 
-#### Install next package in an other directory to keep the minimal package here
+## Tips
 
-In /etc/pacman.conf uncomment the RootDir and change it for /usr/local for example
-Next package will be install there
+### Pacman hooks
+Let create a trace of installed package.
+Can be useful for restauration of the system.
+The following command give you the installed packages on you system.
+```
+pacman -Qqe
+```
+Pacman allow you to create hooks related to its own use.
+Pacman read from `/etc/pacman.d/hooks the .hook 
+
+For example we can create a hooks to generate the installed program after each packet installation.
+It will create a file with the date in the /var/pkgs directory like `2020-11-20_19:21:50-current-pkgs.txt`
+And copy it to `/var/pkgs/prev/2020-11-20_19:21:50-pkgs.txt`
+
+```
+# For the hooks file
+mkdir /etc/pacman.d/hooks
+# For the saved pkgs list
+mkdir -p /var/pkgs/prev
+```
+
+Create a file inside this directory ending with .hook extension
+ex: `/etc/pacman.d/hooks/current-pkgs.hook`
+```
+[Trigger]
+Operation = Install
+Operation = Remove
+Type = Package
+Target = *
+
+[Action]
+When = PostTransaction
+Exec = /bin/sh -c ' /usr/bin/pacman -Qqe > /var/pkgs/$(date +"%F_%X")-current-pkgs.txt && cp /var/pkgs/$(date +"%F_%X")-current-pkgs.txt /var/pkgs/prev/$(date +"%F_%X")-pkgs.txt'
+```
+
+See:
+* https://wiki.archlinux.org/index.php/Pacman#Hooks
