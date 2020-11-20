@@ -384,13 +384,15 @@ Sources:
 * https://wiki.archlinux.org/index.php/General_recommendations#Graphical_user_interface
 * https://en.wikipedia.org/wiki/X_Window_System
 
-For example install the xorg server
+For example install and configure the xorg server
 ```
 pacman -Sy xorg
+Xorg :0 -configure
+cp /root/xorg.conf.new /etc/X11/org.conf
 ```
 
 Source:
-* https://wiki.archlinux.fr/startx
+* https://wiki.archlinux.org/index.php/xorg
 
 ### Install GPU Driver
 
