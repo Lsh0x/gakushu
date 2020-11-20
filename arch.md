@@ -180,7 +180,7 @@ swapon /dev/mapper/arch-swap
 ### Install system and some needed package
 
 ```
-pacstrap /mnt base base-devel linux linux-firmware lvm2 vim dhcpcd
+pacstrap /mnt base base-devel linux linux-firmware lvm2 vim dhcpcd git
 ```
 
 ### System configuration
@@ -263,7 +263,7 @@ In this example we use grub as it allow multiple luks at boot time
 ```
 pacman -S grub
 # Said to grub that we use have luks partition
-sed -i 's/#GRUB_ENABLE_CRYPTODISK/GRUB_ENABLE_CRYPTODISK=y/g' >> /etc/default/grub
+sed -i 's/#GRUB_ENABLE_CRYPTODISK/GRUB_ENABLE_CRYPTODISK=y/g' /etc/default/grub
 
 # use blkid /dev/nvme0n1p3 to find the UUID
 # add this to your /etc/default/grub
@@ -302,8 +302,9 @@ grub-mkconfig -o /boot/grub/grub.cfg
 mkinitcpio will load your configuration and apply them to create the initramfs
 Ex: the hooks sd-encrypt will add the /etc/crypptab.initramfs as /etc/crypttab to load the luks partition (useful in our case)
 Add them in the /etc/mkinitcpio.conf
+```
 HOOKS=(base udev autodetect  modconf block encrypt lvm2 filesystems keyboard fsck shutdown)
-
+```
 You also have the /etc/mkinitcpio.d/linux.present that represent all the image that mkinitcpio will build
 The fallback for example.
 It can be useful when everything work as expected to backup with this
@@ -312,7 +313,7 @@ Sources:
 * https://wiki.archlinux.org/index.php/mkinitcpio
 
 ```
-# build the initramfs
+# build the initramfs eveything will be generated in /boot which is our encrypted disk
 mkinitcpio -p linux
 ```
 
@@ -408,15 +409,21 @@ Let's try it
 # install ligthdm
 pacman -Sy lightdm
 systemctl enable ligthdm.service
+
+# Optional, customization of ligthdm
 # change greeter to use lightdm-webkit2-greeter
-pacman -Sy ligthdm-webkit2-greeters
-# add this in /etc/ligthdm/lightdm.conf
-#
+pacman -Sy ligthdm-webkit2-greeters lightdm-webkit-theme-litarvan
+# Edit /etc/ligthdm/lightdm.conf
+# Change greeter-session to greeter-session=lightdm-webkit2-greeter
+# Change webkit-theme to webkit-theme=litarvan
+
 ```
 
 Source:
 * https://wiki.archlinux.org/index.php/Display_manager
+* https://wiki.archlinux.org/index.php/LightDM
 * https://www.addictivetips.com/ubuntu-linux-tips/set-up-lightdm-on-arch-linux/
+* https://github.com/Litarvan/lightdm-webkit-theme-litarvan
 
 
 
