@@ -434,11 +434,15 @@ systemctl enable ligthdm.service
 
 # Optional, customization of ligthdm
 # change greeter to use lightdm-webkit2-greeter
-pacman -Sy ligthdm-webkit2-greeters lightdm-webkit-theme-litarvan
+pacman -Sy ligthdm-webkit2-greeters
 # Edit /etc/ligthdm/lightdm.conf
 # Change greeter-session to greeter-session=lightdm-webkit2-greeter
+
+# Download and install a theme 
+git clone https://aur.archlinux.org/lightdm-webkit2-theme-glorious.git
+cd lightdm-webkit2-theme-glorious && makepkg -rsi
 #Edit: /etc/lightdm/lightdm-webkit2-greeter.conf
-# Change webkit-theme to webkit-theme=litarvan
+# Change webkit-theme to webkit-theme=glorious
 
 ```
 
