@@ -1,5 +1,10 @@
 # Dual boot window/arch with full encrypted linux disk
-
+* Boot will be in UEFI mode.
+* Boot is encrypted and will ask for passphrase to unlock linux
+* With the window pro version you can use bitgarden to encrypt the window partition
+    * TODO See if we can use luks on the boot window with grub
+* Linux filesystem will be on LVM over luks.
+    * TODO use yubikey to unlock the LVM
 
 ## Download the arch and window iso.
 
@@ -155,9 +160,6 @@ cryptopen open ${DISK}p3 boot
 mkdir /mnt/boot
 mount /dev/mapper/boot
 
-mkdir /mnt/usr
-mount /dev/mapper/usr /mnt/usr
-
 mkdir /mnt/efi
 mount ${DISK}p1 /mnt/efi
 
@@ -198,8 +200,6 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-root /mnt
 ```
 
-
-
 #### update zone info
 ```
 ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
@@ -232,7 +232,7 @@ echo "127.0.0.1       domain.localdomain" >> /etc/hosts
 #### Disk opening at boot time
 
 This section is used only for those who have more disk like a seperate usr
-They will need to use the sd-encrypt hooks
+They will need to use the sd-encrypt and usr hooks
 
 Since we are using multiple luks we need set them in the /etc/crypttab
 And because the usr is needed at bootime we use the properties of the mkinitcpio HOOKS
@@ -255,11 +255,14 @@ Source:
 
 
 ## Install a bootloader
-
+As usual arch allow you to choose the one you want.
+You have multiple choices you can check the one correspond to you
 In this example we use grub as it allow multiple luks at boot time
 
+See: https://wiki.archlinux.org/index.php/Arch_boot_process
 
 ### Install and setup
+
 ```
 pacman -S grub
 # Said to grub that we use have luks partition
@@ -277,7 +280,8 @@ pacman -S efibootmgr
 # install the grub efi bootloader on the efi partition
 grub-install --target=x86_64-efi --efi-directory=/efi
 ```
-
+Sources:
+* https://wiki.archlinux.org/index.php/GRUB
 
 ## Prepare the parameters for the initramfs
 
