@@ -62,9 +62,11 @@ Here a non exhautive list:
 # for other just add the partition number sda1
 export $DISK=/dev/nvme0n1
 
+
 sgdisk --zap-all $DISK
 
 # EFI
+
 
 sgdisk --new=1:0:+500M $DISK
 sgdisk --typecode=1:ef00 $DISK
@@ -461,7 +463,7 @@ The is your graphical environment, i choose a really light one.
 pacman -Sy i3
 echo "exec i3 >> /home/x/.xinit"
 mkdir -p /home/x/.config/i3
-cp /etc/i3/config /home/x/.config/.xinit
+cp /etc/i3/config /home/x/.config/i3/config
 ```
 
 ### Finally
