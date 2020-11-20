@@ -392,7 +392,7 @@ pacman -Sy xorg
 Source:
 * https://wiki.archlinux.fr/startx
 
-#### Install GPU Driver
+### Install GPU Driver
 
 The default vesa display driver will work with most video cards, but performance can be significantly improved and additional features harnessed by installing the appropriate driver for AMD, Intel, or NVIDIA products.
 
@@ -400,8 +400,19 @@ The default vesa display driver will work with most video cards, but performance
 pacman -Sy nvidia
 ```
 
+### Xrandr to setup automatically the screen
 
-#### Display managment (login managemen)
+Since everything need to be done manually this part too
+Fortunatly the package `autoxrandr` do that for us.
+It's using the `xrandr` tools from `xorg`
+Install the package and enable it at startup.
+
+```
+pacman -Sy autorandr
+systemctl enable autorandr.service
+```
+
+### Display managment (login managemen)
 
 This will allow you to have a GUI to enter your login
 There is different solutions, where you can configure the display
