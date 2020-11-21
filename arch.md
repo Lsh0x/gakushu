@@ -6,7 +6,39 @@
 * Linux filesystem will be on LVM over luks.
     * TODO use yubikey to unlock the LVM
 
-## Download the arch and window iso.
+## Table of Content
+- [Downloads](#Download-the-arch-and-window-iso)
+- [Prepare EFI](#Prepare-EFI)
+- [Partioning and format the disk](#Partioning-and-format-the-disk)
+- [Install Window](#Install-Window)
+- [Install Arch Linux](#Install Arch Linux)
+-[Install Arch Linux](#Install-Arch-Linux)
+   -[Synchronise clock](#Synchronise-clock)
+   -[Preparing the disk](#Preparing-the-disk)
+   -[Mounting the filesystem](#Mounting-the-filesystem)
+   -[Install system and some needed package](#Install-system-and-some-package)
+   -[System configuration](#System-configuration)
+   -[Chroot mnt](#Chroot)
+   -[Update zone info and language](#Update-zone-info-and-language)
+   -[Hostname](#Hostname)
+   -[Opening luks disk at boot time](#Opening-luks-disk-at-boot-time)
+   -[Bootloader](#Bootload)
+      -[Intall and setup](#Install-and-setup)
+      -[Initramfs](#Prepare-initramfs)
+   -[Almost finished](#End-of-installation)
+      -[Root password](#Add-root-password)
+      -[User](#User)
+      -[Reboot](#Reboot)
+ - [Post Installation](#Post-installation)
+   - [Network](#Enable-network)
+   - [Graphical Interface](#Graphical-Interface-and-commodities)
+      -[Display Server](#Display-Server)
+      -[GPU Driver](#Install-GPU-Driver)
+      -[Dislay Managment](#Display-managment)
+- [Sound](#Sound)
+ -[Tips](#Tips)
+
+## Download the arch and window iso
 
 ex:
 ```
@@ -35,13 +67,12 @@ Sources for help:
 * https://www.freecodecamp.org/news/how-make-a-windows-10-usb-using-your-mac-build-a-bootable-iso-from-your-macs-terminal/
 
 
-## Prepare EFI
 
 The Window installer will only create a partition of 100M.
 To avoid this, you can create the EFI partition before running the window installation.
 I recommand to create your own before to size it as you whish
 
-### Partioning and format the disk
+## Partioning and format the disk
 
 
 We boot the arch iso to access sgdisk
@@ -103,15 +134,15 @@ It's a choice i did to have the boot efi and grub at the begininig of the disk.
 Feel like you want, just after the installation do the GRUB and BOOT partionning/formattage of the disks.
 
 
-## Install arch linux
+## Install Arch Linux
 
-### Setting environment
+### Synchronise clock
 
 ```
 timedatectl set-ntp true
 ```
 
-### Preparing the disk (again)
+### Preparing the disk
 
 ```
 #export DISK=<YOUR DISK AGAIN>
@@ -181,6 +212,7 @@ mount /dev/mapper/arch-local /mnt/usr/local
 swapon /dev/mapper/arch-swap
 ```
 
+
 ### Install system and some needed package
 
 ```
@@ -195,28 +227,23 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 ```
 
-### Enter inside
+### Chroot
 
 
 ```
 arch-root /mnt
 ```
 
-#### update zone info
+#### update zone info and language
 ```
 ln -sf /usr/share/zoneinfo/America/Los_Angeles /etc/localtime
 hwclock --systohc
-```
 
-#### Set language to us utf-8
-
-```
 # Localization
 sed -i 's/#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
 locale-gen
 # language
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
-
 ```
 
 #### Hostname
@@ -231,7 +258,7 @@ echo "::1             localhost" >> /etc/hosts
 echo "127.0.0.1       domain.localdomain" >> /etc/hosts
 ```
 
-#### Disk opening at boot time
+#### Opening luks disk at boot time
 
 This section is used only for those who have more disk like a seperate usr
 They will need to use the sd-encrypt and usr hooks
@@ -255,15 +282,14 @@ Source:
 * https://wiki.archlinux.org/index.php/Dm-crypt/System_configuration#Using_sd-encrypt_hook
 
 
-
-## Install a bootloader
+### Bootloader
 As usual arch allow you to choose the one you want.
 You have multiple choices you can check the one correspond to you
 In this example we use grub as it allow multiple luks at boot time
 
 See: https://wiki.archlinux.org/index.php/Arch_boot_process
 
-### Install and setup
+#### Install and setup
 
 ```
 pacman -S grub
@@ -285,9 +311,10 @@ grub-install --target=x86_64-efi --efi-directory=/efi
 Sources:
 * https://wiki.archlinux.org/index.php/GRUB
 
-## Prepare the parameters for the initramfs
 
-### Install microcode for your processor
+### Prepare initramfs
+
+#### Install microcode for your processor
 
 Source:
 https://wiki.archlinux.org/index.php/microcode
@@ -303,7 +330,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 
-### Configuration of mkinitcpio
+#### Configuration of mkinitcpio
 
 mkinitcpio will load your configuration and apply them to create the initramfs
 Ex: the hooks sd-encrypt will add the /etc/crypptab.initramfs as /etc/crypttab to load the luks partition (useful in our case)
@@ -323,10 +350,15 @@ Sources:
 mkinitcpio -p linux
 ```
 
-## End of installation
+### End of installation
 
-### Add a root passwd to be able to debug if needed
 
+#### Add root password
+```
+passwd
+```
+
+#### User
 ```
 # Add user with wheel group
 useradd -G wheel -m x
@@ -334,8 +366,10 @@ pacman -Sy sudo
 passwd x
 # uncomment the wheel line in the /etc/sudoers file allowing x to use sudo
 
-# you can also add a passwd to root
-passwd
+```
+
+#### Reboot
+```
 reboot
 ```
 
@@ -409,19 +443,8 @@ nvidia-xconfig
 Source:
 * https://wiki.archlinux.org/index.php/
 
-### Xrandr to setup automatically the screen
 
-Since everything need to be done manually this part too
-Fortunatly the package `autoxrandr` do that for us.
-It's using the `xrandr` tools from `xorg`
-Install the package and enable it at startup.
-
-```
-pacman -Sy autorandr
-systemctl enable autorandr.service
-```
-
-### Display managment (login managemen)
+### Display managment
 
 This will allow you to have a GUI to enter your login
 There is different solutions, where you can configure the display
@@ -467,7 +490,7 @@ cp /etc/i3/config /home/x/.config/i3/config
 ```
 
 
-#### Sound
+## Sound
 
 You should have alsa installed, complete it with pulse-audio
 ```
@@ -527,3 +550,15 @@ Exec = /bin/sh -c ' /usr/bin/pacman -Qqe > /var/pkgs/$(date +"%F_%X")-current-pk
 
 See:
 * https://wiki.archlinux.org/index.php/Pacman#Hooks
+
+### Xrandr to setup automatically the screen
+
+Since everything need to be done manually this part too
+Fortunatly the package `autoxrandr` do that for us.
+It's using the `xrandr` tools from `xorg`
+Install the package and enable it at startup.
+
+```
+pacman -Sy autorandr
+systemctl enable autorandr.service
+```
