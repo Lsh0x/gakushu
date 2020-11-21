@@ -11,7 +11,6 @@
 - [Prepare EFI](#Prepare-EFI)
 - [Partioning and format the disk](#Partioning-and-format-the-disk)
 - [Install Window](#Install-Window)
-- [Install Arch Linux](#Install Arch Linux)
 - [Install Arch Linux](#Install-Arch-Linux)
    - [Synchronise clock](#Synchronise-clock)
    - [Preparing the disk](#Preparing-the-disk)
@@ -36,7 +35,7 @@
       -[GPU Driver](#Install-GPU-Driver)
       -[Dislay Managment](#Display-managment)
 - [Sound](#Sound)
- -[Tips](#Tips)
+- [Tips](#Tips)
 
 ## Download the arch and window iso
 
@@ -350,6 +349,8 @@ Sources:
 mkinitcpio -p linux
 ```
 
+[Table of Contents](#Table-of-Content)
+
 ### End of installation
 
 
@@ -374,6 +375,7 @@ reboot
 ```
 
 Now the system should boot
+[Table of Contents](#Table-of-Content)
 
 ## Post installation
 
@@ -502,6 +504,7 @@ pacman -Sy pavucontrol
 Source: 
 * 
 
+[Table of Contents](#Table-of-Content)
 
 ### Finally
 
@@ -562,3 +565,5 @@ Install the package and enable it at startup.
 pacman -Sy autorandr
 systemctl enable autorandr.service
 ```
+
+[Table of Contents](#Table-of-Content)
