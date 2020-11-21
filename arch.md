@@ -8,7 +8,6 @@
 
 ## Table of Content
 - [Downloads](#Download-the-arch-and-window-iso)
-- [Prepare EFI](#Prepare-EFI)
 - [Partioning and format the disk](#Partioning-and-format-the-disk)
 - [Install Window](#Install-Window)
 - [Install Arch Linux](#Install-Arch-Linux)
