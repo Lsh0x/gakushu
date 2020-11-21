@@ -375,7 +375,7 @@ systemctl start systemd-networkd.service
 systemctl enable systemd-networkd.service
 ```
 
-## Graphical Interface
+## Graphical Interface and commodities
 
 ### Display Server
 
@@ -465,6 +465,20 @@ echo "exec i3 >> /home/x/.xinit"
 mkdir -p /home/x/.config/i3
 cp /etc/i3/config /home/x/.config/i3/config
 ```
+
+
+#### Sound
+
+You should have alsa installed, complete it with pulse-audio
+```
+pacman -Sy pulseaudio-alsa
+# add a graphical interface if needed.
+pacman -Sy pavucontrol
+```
+
+Source: 
+* 
+
 
 ### Finally
 
