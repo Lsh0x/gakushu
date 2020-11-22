@@ -604,23 +604,22 @@ systemctl enable autorandr.service
 
 If you need a disk to be shared between your window and linux
 You need a partition for it with a `NTFS` file system
-Then from the livecd you can format the disk by 
+Window need to create it to assign it
+Format the partition with window, disk management, see sources.
+Then it should be reconize by your window
+Now we need to mount it with linux, rebbot and boot on arch linux
 ```
-# The L option allow you to create a LABEL
-mkfs.ntfs <DISK> -L share
-```
-In the arch-chroot you will need to install `ntfs-3g` witch is the open source of ntfs allowing arch linux to mount the disk
-```
+# Change the label of the disk
+e2label <DISK> shared
+# You need the ntfs-3g to be able to mount the ntfs partition
 pacman -Sy ntfs-3g
 mkdir <MOUNTPOINT>
-```
-
-Finnally in you `/etc/fstab` add the new entries
-```
+# Finally lets add it to our fstab
 echo "LABEL=shared	        <MOUNTPOINT>	        ntfs	        rw,relatime	0 2" >> /etc/fstab
 ```
 
 Sources:
 * https://wiki.archlinux.org/index.php/NTFS-3G
+* https://helpdesk.originpc.com/support/solutions/articles/9000124011-how-to-add-a-hard-drive-to-windows-10-
 
 [Table of Contents](#Table-of-Content)
