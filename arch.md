@@ -614,8 +614,9 @@ e2label <DISK> shared
 # You need the ntfs-3g to be able to mount the ntfs partition
 pacman -Sy ntfs-3g
 mkdir <MOUNTPOINT>
-# Finally lets add it to our fstab
-echo "LABEL=shared	        <MOUNTPOINT>	        ntfs	        rw,relatime	0 2" >> /etc/fstab
+# Finally lets add it to our fstab with options to have permission for everyone
+# (Do not store sensitive information here)
+echo "LABEL=shared	        <MOUNTPOINT>	        ntfs	        rw,relatime,user,auto,uid=1000,gid=1000	0 2" >> /etc/fstab
 ```
 
 Sources:
