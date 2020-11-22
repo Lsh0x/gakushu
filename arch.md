@@ -39,6 +39,7 @@
    - [Login customization](#Lightdm-customization)
    - [Sound](#Sound)
    - [Pacman hooks](#Pacman-hooks)
+   - [Automated screen display](#Xrandr-to-setup-automatically-the-screen)
 ## Download the arch and window iso
 
 ex:
@@ -491,7 +492,7 @@ Source:
 * https://wiki.archlinux.fr/mkinitcpio#Hooks
 * https://wiki.archlinux.org/index.php/Dm-crypt/System_configuration#Using_sd-encrypt_hook
 
-### Lightdm  customization
+### Lightdm customization
 
 Lightdm allow you to use theme to custumize the login interface
 Here an example to change the greetier session and use a theme 
