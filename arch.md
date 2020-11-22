@@ -33,6 +33,7 @@
       -[Display Server](#Display-Server)
       -[GPU Driver](#Install-GPU-Driver)
       -[Dislay Managment](#Display-managment)
+      -[Window Managment](#Window-managment)
 - [Sound](#Sound)
 - [Tips](#Tips)
    - [Other luks](#Opening-luks-disk-at-boot-time)
@@ -444,6 +445,8 @@ Source:
 * https://wiki.archlinux.org/index.php/LightDM
 
 
+### Window managment
+
 The is your graphical environment, i choose a really light one.
 
 
@@ -453,6 +456,9 @@ echo "exec i3 >> /home/x/.xinit"
 mkdir -p /home/x/.config/i3
 cp /etc/i3/config /home/x/.config/i3/config
 ```
+
+Source: 
+* https://www.youtube.com/watch?v=j1I63wGcvU4
 
 [Table of Contents](#Table-of-Content)
 
