@@ -35,7 +35,10 @@
       -[Dislay Managment](#Display-managment)
 - [Sound](#Sound)
 - [Tips](#Tips)
-
+   - [Other luks](#Opening-luks-disk-at-boot-time)
+   - [Login customization](#Lightdm-customization)
+   - [Sound](#Sound)
+   - [Pacman hooks](#Pacman-hooks)
 ## Download the arch and window iso
 
 ex:
@@ -256,29 +259,6 @@ echo "::1             localhost" >> /etc/hosts
 echo "127.0.0.1       domain.localdomain" >> /etc/hosts
 ```
 
-#### Opening luks disk at boot time
-
-This section is used only for those who have more disk like a seperate usr
-They will need to use the sd-encrypt and usr hooks
-
-Since we are using multiple luks we need set them in the /etc/crypttab
-And because the usr is needed at bootime we use the properties of the mkinitcpio HOOKS
-sd-encrypt to open the luks partition by adding the entries in /etc/crypttab.initramfs
-Use the lsblk to get the UUID and add them to the /etc/crypttab.initramfs file
-
-```
-# <NAME>               UUID=<ID find with blkid>          none    luks
-# With vim you can do:
-# :read ! blkid <PATH OF THE DISK>
-
-rootfs                  UUID=                             none    luks
-usr                     UUID=                             none    luks
-```
-
-Source:
-* https://wiki.archlinux.fr/mkinitcpio#Hooks
-* https://wiki.archlinux.org/index.php/Dm-crypt/System_configuration#Using_sd-encrypt_hook
-
 
 ### Bootloader
 As usual arch allow you to choose the one you want.
@@ -326,7 +306,6 @@ mkdir /boot/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 
 ```
-
 
 #### Configuration of mkinitcpio
 
@@ -457,27 +436,11 @@ Let's try it
 # install ligthdm
 pacman -Sy lightdm
 systemctl enable ligthdm.service
-
-# Optional, customization of ligthdm
-# change greeter to use lightdm-webkit2-greeter
-pacman -Sy ligthdm-webkit2-greeters
-# Edit /etc/ligthdm/lightdm.conf
-# Change greeter-session to greeter-session=lightdm-webkit2-greeter
-
-# Download and install a theme 
-git clone https://aur.archlinux.org/lightdm-webkit2-theme-glorious.git
-cd lightdm-webkit2-theme-glorious && makepkg -rsi
-#Edit: /etc/lightdm/lightdm-webkit2-greeter.conf
-# Change webkit-theme to webkit-theme=glorious
-
 ```
 
 Source:
 * https://wiki.archlinux.org/index.php/Display_manager
 * https://wiki.archlinux.org/index.php/LightDM
-* https://www.addictivetips.com/ubuntu-linux-tips/set-up-lightdm-on-arch-linux/
-* https://github.com/Litarvan/lightdm-webkit-theme-litarvan
-
 
 
 The is your graphical environment, i choose a really light one.
@@ -490,8 +453,66 @@ mkdir -p /home/x/.config/i3
 cp /etc/i3/config /home/x/.config/i3/config
 ```
 
+[Table of Contents](#Table-of-Content)
 
-## Sound
+### Finally
+
+#### Recommandation
+
+You should be able to have a bit plus of an minimal environment 
+I stongly recommand to read the sources given to learn more about what you are using.
+It also allow you to go deeper in the configuration.
+Some others learning stuff will come.
+
+## Tips
+
+### Opening luks disk at boot time
+
+This section is used only for those who have more disk, like a seperate usr
+They will need to use the `systemd` and `sd-encrypt` hooks for multiple disks and the `usr` hooks if usr is in an other partition
+
+Since we are using multiple luks, we need set them in the `/etc/crypttab` if the disk in not required at boot time
+If it's needed you need to add it in `/etc/crypttab.initramfs`, it will be added as `/etc/crypttab` in your image.
+For usr because it's needed at bootime we use the properties of the mkinitcpio HOOKS
+`usr` to open the luks partition by adding the entries in `/etc/crypttab.initramfs`
+Use the lsblk to get the UUID and add them to the `/etc/crypttab.initramfs` file
+The syntax is the same either in `/etc/crypttab` and `/etc/crypttab.initramfs`
+
+```
+# <NAME>               UUID=<ID find with blkid>          none    luks
+# With vim you can do:
+# :read ! blkid <PATH OF THE DISK>
+
+rootfs                  UUID=                             none    luks
+usr                     UUID=                             none    luks
+```
+
+Source:
+* https://wiki.archlinux.fr/mkinitcpio#Hooks
+* https://wiki.archlinux.org/index.php/Dm-crypt/System_configuration#Using_sd-encrypt_hook
+
+### Lightdm  customization
+
+Lightdm allow you to use theme to custumize the login interface
+Here an example to change the greetier session and use a theme 
+```
+# change greeter to use lightdm-webkit2-greeter
+pacman -Sy ligthdm-webkit2-greeters
+# Edit /etc/ligthdm/lightdm.conf
+# Change greeter-session to greeter-session=lightdm-webkit2-greeter
+
+# Download and install a theme 
+git clone https://aur.archlinux.org/lightdm-webkit2-theme-glorious.git
+cd lightdm-webkit2-theme-glorious && makepkg -rsi
+#Edit: /etc/lightdm/lightdm-webkit2-greeter.conf
+# Change webkit-theme to webkit-theme=glorious
+```
+Sources:
+
+* https://www.addictivetips.com/ubuntu-linux-tips/set-up-lightdm-on-arch-linux/
+* https://github.com/Litarvan/lightdm-webkit-theme-litarvan
+
+### Sound
 
 You should have alsa installed, complete it with pulse-audio
 ```
@@ -499,22 +520,6 @@ pacman -Sy pulseaudio-alsa
 # add a graphical interface if needed.
 pacman -Sy pavucontrol
 ```
-
-Source: 
-* 
-
-[Table of Contents](#Table-of-Content)
-
-### Finally
-
-#### Recommandation
-You should be able to have a bit plus of an minimal environment 
-I stongly recommand to read the sources given to learn more about what you are using.
-It also allow you to go deeper in the configuration.
-Some others learning stuff will come.
-
-
-## Tips
 
 ### Pacman hooks
 Let create a backup of installed package with the date.
