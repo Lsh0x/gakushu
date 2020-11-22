@@ -1,4 +1,8 @@
 # Dual boot window/arch with full encrypted linux disk
+
+I recomand to read the tips section that are optionnal for an installation
+but can add a lot of thing that you might want to install a the installation
+
 * Boot will be in UEFI mode.
 * Boot is encrypted and will ask for passphrase to unlock linux
 * With the window pro version you can use bitgarden to encrypt the window partition
@@ -36,6 +40,7 @@
       -[Window Managment](#Window-managment)
 - [Sound](#Sound)
 - [Tips](#Tips)
+   - [Share data between arch and window](#Disk-shared-between-window-and-linux)
    - [Other luks](#Opening-luks-disk-at-boot-time)
    - [Login customization](#Lightdm-customization)
    - [Sound](#Sound)
@@ -125,6 +130,7 @@ mkfs.ext4 /dev/mapper/boot -L boot
 ```
 
 
+
 ## Install window
 
 You can create a parititon with the window install and keep the end of the disk for linux
@@ -179,6 +185,10 @@ mkfs.ext4 /dev/mapper/arch-local -L local
 lvcreate -l 80%FREE -n home arch
 mkfs.ext4 /dev/mapper/arch-home -L home
 ```
+
+Tips:
+- [Share data between arch and window](#Disk-shared-between-window-and-linux)
+- [Other luks](#Opening-luks-disk-at-boot-time)
 
 ### Mounting the filesystem
 
@@ -333,6 +343,8 @@ mkinitcpio -p linux
 
 ### End of installation
 
+- [Pacman hooks](#Pacman-hooks)
+
 
 #### Add root password
 ```
@@ -412,6 +424,10 @@ cp /root/xorg.conf.new /etc/X11/org.conf
 Source:
 * https://wiki.archlinux.org/index.php/xorg
 
+Tips:
+- [Automated screen display](#Xrandr-to-setup-automatically-the-screen)
+
+
 ### Install GPU Driver
 
 The default vesa display driver will work with most video cards, but performance can be significantly improved and additional features harnessed by installing the appropriate driver for AMD, Intel, or NVIDIA products.
@@ -445,6 +461,10 @@ Source:
 * https://wiki.archlinux.org/index.php/LightDM
 
 
+Tips:
+- [Login customization](#Lightdm-customization)
+
+
 ### Window managment
 
 The is your graphical environment, i choose a really light one.
@@ -461,6 +481,9 @@ Source:
 * https://www.youtube.com/watch?v=j1I63wGcvU4
 
 [Table of Contents](#Table-of-Content)
+
+Tips:
+- [Sound](#Sound)
 
 ### Finally
 
@@ -576,5 +599,28 @@ Install the package and enable it at startup.
 pacman -Sy autorandr
 systemctl enable autorandr.service
 ```
+
+### Disk shared between window and linux
+
+If you need a disk to be shared between your window and linux
+You need a partition for it with a `NTFS` file system
+Then from the livecd you can format the disk by 
+```
+# The L option allow you to create a LABEL
+mkfs.ntfs <DISK> -L share
+```
+In the arch-chroot you will need to install `ntfs-3g` witch is the open source of ntfs allowing arch linux to mount the disk
+```
+pacman -Sy ntfs-3g
+mkdir <MOUNTPOINT>
+```
+
+Finnally in you `/etc/fstab` add the new entries
+```
+echo "LABEL=shared	        <MOUNTPOINT>	        ntfs	        rw,relatime	0 2" >> /etc/fstab
+```
+
+Sources:
+* https://wiki.archlinux.org/index.php/NTFS-3G
 
 [Table of Contents](#Table-of-Content)
