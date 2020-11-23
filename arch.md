@@ -26,7 +26,7 @@ but can add a lot of thing that you might want to install a the installation
    - [Opening luks disk at boot time](#Opening-luks-disk-at-boot-time)
    - [Bootloader](#Install-and-setup)
    - [Initramfs](#Prepare-initramfs)
-   -[Almost finished](#End-of-installation)
+   - [Almost finished](#End-of-installation)
       -[Root password](#Add-root-password)
       -[User](#User)
       -[Reboot](#Reboot)
