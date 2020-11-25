@@ -670,3 +670,11 @@ We set the arch linux to be the default one.
 ```
 efibootmgr -o 0001,0000
 ```
+
+#### Chaning theme 
+
+You can change the grub theme.
+For that choose the one you like and install it.
+
+Sources: 
+https://www.gnome-look.org/browse/cat/109/order/latest/
