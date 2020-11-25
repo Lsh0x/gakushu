@@ -42,6 +42,7 @@ but can add a lot of thing that you might want to install a the installation
    - [Sound](#Sound)
    - [Pacman hooks](#Pacman-hooks)
    - [Automated screen display](#Xrandr-to-setup-automatically-the-screen)
+   - [GRUB] (#Grub-configuration)
 ## Download the arch and window iso
 
 ex:
@@ -620,3 +621,32 @@ Sources:
 * https://helpdesk.originpc.com/support/solutions/articles/9000124011-how-to-add-a-hard-drive-to-windows-10-
 
 [Table of Contents](#Table-of-Content)
+
+### Grub configuration
+
+#### Chainloading window
+Now we have multiple boot posssibilities but there are not in the same place
+We have the window bootloader and grub for arch linux.
+Why not choosing from grub if we want to boot window or linux.
+Do do that, grub will need to chain to the window boot.
+Make sure you boot partition and efi are open and mount.
+Then we need to specify to grub that we want chain to window, and regenerate the configuration
+Let's add a menuentry for window in `/etc/grub.d/40_custom`
+```
+# ex:
+# Since my EFI partition is the firt partition and on the same disk as my boot partition i use: (hd2,gpt1)
+# You need to know the disk, when booting on the encrypted boot you should have something like: `hd2,gpt3
+menuentry "Windows" {
+	insmod fat
+	set root=(hd2,gpt1)
+	chainloader (${root})/EFI/Microsoft/Boot/bootmgfw.efi
+	boot
+}
+```
+
+Regenerate the grub configuration
+```
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+Now we should be able to select `Windows` in you grub menu
