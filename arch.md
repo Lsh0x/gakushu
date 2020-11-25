@@ -42,7 +42,7 @@ but can add a lot of thing that you might want to install a the installation
    - [Sound](#Sound)
    - [Pacman hooks](#Pacman-hooks)
    - [Automated screen display](#Xrandr-to-setup-automatically-the-screen)
-   - [GRUB] (#Grub-configuration)
+   - [GRUB](#Grub-configuration)
 ## Download the arch and window iso
 
 ex:
@@ -650,3 +650,6 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 Now we should be able to select `Windows` in you grub menu
+
+Sources:
+* https://wiki.archlinux.org/index.php/GRUB#Chainloading_Windows/Linux_installed_in_UEFI_mode
