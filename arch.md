@@ -653,3 +653,20 @@ Now we should be able to select `Windows` in you grub menu
 
 Sources:
 * https://wiki.archlinux.org/index.php/GRUB#Chainloading_Windows/Linux_installed_in_UEFI_mode
+
+
+#### Changing boot order
+
+`efibootmgr` is the utilily that handler the UEFI boot.
+It let you interact with it
+Try
+
+```
+efibootmgr -v
+```
+For know we keep the default window entry, but let's make grub the default boot
+Changing the boot order will do that.
+We set the arch linux to be the default one.
+```
+efibootmgr -o 0001,0000
+```
