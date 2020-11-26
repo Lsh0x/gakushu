@@ -670,6 +670,19 @@ We set the arch linux to be the default one.
 efibootmgr -o 0001,0000
 ```
 
+Depending on firmware you can have some issue.
+For my computer i had to delete the window boot entry
+then create a new one with the same parameters than the arh linux one using: 
+```
+efibootmgr -b 0000 -B
+# Will take the 0000 slot and then the firmare added the window boot
+efibootmgr -c -l "Arch Linux" -d /dev/nvme0n1p1 -l "\EFI\ARCH\GRUBX64.EFI"
+```
+
+Sources:
+
+https://github.com/Lsh0x/gakushu/edit/main/arch.md
+
 #### Chaning theme 
 
 You can change the grub theme.
