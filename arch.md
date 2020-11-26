@@ -579,7 +579,7 @@ Target = *
 
 [Action]
 When = PostTransaction
-Exec = /bin/sh -c ' /usr/bin/pacman -Qqe > /var/pkgs/$(date +"%F_%X")-current-pkgs.txt && cp /var/pkgs/$(date +"%F_%X")-current-pkgs.txt /var/pkgs/prev/$(date +"%F_%X")-pkgs.txt'
+Exec = /bin/sh -c '/usr/bin/pacman -Qqe > /var/pkgs/current-pkgs.txt && cp /var/pkgs/current-pkgs.txt /var/pkgs/prev/$(date +"%F_%X")-pkgs.txt'
 ```
 
 See:
