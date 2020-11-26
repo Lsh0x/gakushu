@@ -674,6 +674,7 @@ efibootmgr -o 0001,0000
 
 You can change the grub theme.
 For that choose the one you like and install it.
+Be sure to install in the `/boot/grub/themes` directory and not in the rootfs
 
 Sources: 
 https://www.gnome-look.org/browse/cat/109/order/latest/
