@@ -634,11 +634,10 @@ Then we need to specify to grub that we want chain to window, and regenerate the
 Let's add a menuentry for window in `/etc/grub.d/40_custom`
 ```
 # ex:
-# Since my EFI partition is the firt partition and on the same disk as my boot partition i use: (hd2,gpt1)
-# You need to know the disk, when booting on the encrypted boot you should have something like: `hd2,gpt3
+# Since we set the label of the efi partition to EFI we can search on it
 menuentry "Windows" {
 	insmod fat
-	set root=(hd2,gpt1)
+	search --label --set=root EFI
 	chainloader (${root})/EFI/Microsoft/Boot/bootmgfw.efi
 	boot
 }
