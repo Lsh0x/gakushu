@@ -678,3 +678,4 @@ Be sure to install in the `/boot/grub/themes` directory and not in the rootfs
 
 Sources: 
 https://www.gnome-look.org/browse/cat/109/order/latest/
+https://wiki.archlinux.org/index.php/GRUB/Tips_and_tricks#Hidden_menu
