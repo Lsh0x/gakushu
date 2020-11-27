@@ -725,5 +725,5 @@ Terminal=false
 ```
 
 Sources:
-https://wiki.archlinux.org/index.php/conky
-https://github.com/brndnmtthws/conky/wiki/Configs
+* https://wiki.archlinux.org/index.php/conky
+* https://github.com/brndnmtthws/conky/wiki/Configs
