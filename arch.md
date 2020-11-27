@@ -714,15 +714,9 @@ This will make the conky widget only on your desktop on not on your windows
 
 #### Auto start
 
-
-Create the `~/.config/autostart/conky.desktop` file with : 
+Add in your i3 configuration file, `$HOME/.config/i3/config` the following line
 ```
-[Desktop Entry]
-Type=Application
-Name=conky
-Exec=conky --daemonize --pause=5
-StartupNotify=false
-Terminal=false
+exec conky
 ```
 
 Sources:
