@@ -44,7 +44,7 @@ but can add a lot of thing that you might want to install a the installation
    - [Automated screen display](#Xrandr-to-setup-automatically-the-screen)
    - [GRUB](#Grub-configuration)
    - [Conky](#Conky)
-   - [Desktop background](#feh)
+   - [Desktop background](#nitrogen)
 ## Download the arch and window iso
 
 ex:
@@ -723,21 +723,21 @@ Sources:
 * https://wiki.archlinux.org/index.php/conky
 * https://github.com/brndnmtthws/conky/wiki/Configs
 
-### Feh
+### Nitrogen
 
 You may want a background images for you desktop
 For that you can use `feh` or nitrogen for multiple screen support
 
 #### Installation
 ```
-pacman -Sy feh
+pacman -Sy nitrogen
 ```
 
 #### Using it with i3 
 Just add in you `$HOME/.config/i3/config`
 
 ```
-exec feh -bg-scale <PATH TO WALLPAPER>
+exec nitrogen -set-scaled <PATH TO WALLPAPER>
 ```
 
 Sources: 
