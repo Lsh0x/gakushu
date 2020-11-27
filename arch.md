@@ -43,6 +43,7 @@ but can add a lot of thing that you might want to install a the installation
    - [Pacman hooks](#Pacman-hooks)
    - [Automated screen display](#Xrandr-to-setup-automatically-the-screen)
    - [GRUB](#Grub-configuration)
+   - [Conky](#Conky)
 ## Download the arch and window iso
 
 ex:
@@ -692,3 +693,37 @@ Be sure to install in the `/boot/grub/themes` directory and not in the rootfs
 Sources: 
 https://www.gnome-look.org/browse/cat/109/order/latest/
 https://wiki.archlinux.org/index.php/GRUB/Tips_and_tricks#Hidden_menu
+
+### Conky
+
+#### Installation
+Conky is a monitoring system hight configurable
+You can install it simply by
+```
+pacman -Sy conky
+```
+
+Then you can find some theme with already configuration.
+Install the configuration file in`$HOME/.config/conky/conky.conf`
+Some themes will override you window, you can fix that by setting this
+```
+own_window_type='override'
+```
+This will make the conky widget only on your desktop on not on your windows
+
+#### Auto start
+
+
+Create the `~/.config/autostart/conky.desktop` file with : 
+```
+[Desktop Entry]
+Type=Application
+Name=conky
+Exec=conky --daemonize --pause=5
+StartupNotify=false
+Terminal=false
+```
+
+Sources:
+https://wiki.archlinux.org/index.php/conky
+https://github.com/brndnmtthws/conky/wiki/Configs
