@@ -716,7 +716,7 @@ This will make the conky widget only on your desktop on not on your windows
 
 Add in your i3 configuration file, `$HOME/.config/i3/config` the following line
 ```
-exec conky
+exec --no-startup-id conky
 ```
 
 Sources:
@@ -737,7 +737,7 @@ pacman -Sy nitrogen
 Just add in you `$HOME/.config/i3/config`
 
 ```
-exec nitrogen -set-scaled <PATH TO WALLPAPER>
+exec --no-startup-id nitrogen -set-scaled <PATH TO WALLPAPER>
 ```
 
 Sources: 
