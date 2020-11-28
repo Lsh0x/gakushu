@@ -741,6 +741,7 @@ exec --no-startup-id conky
 Sources:
 * https://wiki.archlinux.org/index.php/conky
 * https://github.com/brndnmtthws/conky/wiki/Configs
+* http://conky.sourceforge.net/variables.html
 
 ### Nitrogen
 
