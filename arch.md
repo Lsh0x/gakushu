@@ -43,7 +43,7 @@ but can add a lot of thing that you might want to install a the installation
    - [Pacman hooks](#Pacman-hooks)
    - [Automated screen display](#Xrandr-to-setup-automatically-the-screen)
    - [GRUB](#Grub-configuration)
-   - [Picom)(#Picom)
+   - [Picom](#Picom)
    - [Conky](#Conky)
    - [Desktop background](#nitrogen)
 ## Download the arch and window iso
