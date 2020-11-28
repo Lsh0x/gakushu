@@ -702,9 +702,19 @@ https://wiki.archlinux.org/index.php/GRUB/Tips_and_tricks#Hidden_menu
 Picom is a standalone compositor for Xorg, suitable for use with window managers that do not provide compositing.
 This will be helpful for powering tools, like the conky monitoring system
 
+#### Installation
 ```
 pacman -Sy picom
 ```
+
+#### Auto start
+
+
+Add in your i3 configuration file, `$HOME/.config/i3/config` the following line
+```
+exec --no-startup-id picom
+```
+
 
 Source:
 * https://wiki.archlinux.org/index.php/Picom#Conky
@@ -720,11 +730,6 @@ pacman -Sy conky
 
 Then you can find some theme with already configuration.
 Install the configuration file in`$HOME/.config/conky/conky.conf`
-Some themes will override you window, you can fix that by setting this
-```
-own_window_type='override'
-```
-This will make the conky widget only on your desktop on not on your windows
 
 #### Auto start
 
