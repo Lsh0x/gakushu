@@ -43,6 +43,7 @@ but can add a lot of thing that you might want to install a the installation
    - [Pacman hooks](#Pacman-hooks)
    - [Automated screen display](#Xrandr-to-setup-automatically-the-screen)
    - [GRUB](#Grub-configuration)
+   - [Picom)(#Picom)
    - [Conky](#Conky)
    - [Desktop background](#nitrogen)
 ## Download the arch and window iso
@@ -694,6 +695,19 @@ Be sure to install in the `/boot/grub/themes` directory and not in the rootfs
 Sources: 
 https://www.gnome-look.org/browse/cat/109/order/latest/
 https://wiki.archlinux.org/index.php/GRUB/Tips_and_tricks#Hidden_menu
+
+
+### Picom
+
+Picom is a standalone compositor for Xorg, suitable for use with window managers that do not provide compositing.
+This will be helpful for powering tools, like the conky monitoring system
+
+```
+pacman -Sy picom
+```
+
+Source:
+* https://wiki.archlinux.org/index.php/Picom#Conky
 
 ### Conky
 
