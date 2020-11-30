@@ -36,6 +36,7 @@ but can add a lot of thing that you might want to install a the installation
    - [Window Managment](#Window-managment)
 - [Sound](#Sound)
 - [Tips](#Tips)
+   - [Luks keys](#Embed-a-keyfile-in-initramfs)
    - [Share data between arch and window](#Disk-shared-between-window-and-linux)
    - [Other luks](#Opening-luks-disk-at-boot-time)
    - [Login customization](#Lightdm-customization)
@@ -520,6 +521,45 @@ usr                     UUID=                             none    luks
 Source:
 * https://wiki.archlinux.fr/mkinitcpio#Hooks
 * https://wiki.archlinux.org/index.php/Dm-crypt/System_configuration#Using_sd-encrypt_hook
+
+### Embed a keyfile in initramfs
+
+This is a copy paste from : 
+* https://gist.github.com/huntrar/e42aee630bee3295b2c671d098c81268#recommended-embed-a-keyfile-in-initramfs
+
+#### Create a keyfile and add it as LUKS key
+```
+mkdir /root/secrets && chmod 700 /root/secrets
+head -c 64 /dev/urandom > /root/secrets/crypto_keyfile.bin && chmod 600 /root/secrets/crypto_keyfile.bin
+cryptsetup -v luksAddKey -i 1 /dev/nvme0n1p3 /root/secrets/crypto_keyfile.bin
+```
+
+#### Add the keyfile to the initramfs image
+```/etc/mkinitcpio.conf```
+```
+FILES=(/root/secrets/crypto_keyfile.bin)
+```
+
+#### Recreate the initramfs image
+```
+mkinitcpio -p linux
+```
+
+#### Set kernel parameters to unlock the LUKS partition with the keyfile using ```encrypt``` hook
+```/etc/default/grub```
+```
+GRUB_CMDLINE_LINUX="... cryptkey=rootfs:/root/secrets/crypto_keyfile.bin"
+```
+
+#### Regenerate GRUB's configuration file
+```
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+#### Restrict ```/boot``` permissions
+```
+chmod 700 /boot
+```
 
 ### Lightdm customization
 
