@@ -36,6 +36,7 @@ but can add a lot of thing that you might want to install a the installation
    - [Window Managment](#Window-managment)
 - [Sound](#Sound)
 - [Tips](#Tips)
+   - [Adding more luks](#Opening-luks-disk-at-boot-time)
    - [Luks keys](#Embed-a-keyfile-in-initramfs)
    - [Share data between arch and window](#Disk-shared-between-window-and-linux)
    - [Other luks](#Opening-luks-disk-at-boot-time)
