@@ -35,7 +35,7 @@ but can add a lot of thing that you might want to install a the installation
    - [Dislay Managment](#Display-managment)
    - [Window Managment](#Window-managment)
 - [Sound](#Sound)
-- [Tips](#tips.md)
+- [Tips](tips.md)
 
 ## Download the arch and window iso
 
