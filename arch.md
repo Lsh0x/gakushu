@@ -787,7 +787,7 @@ Sources:
 ### Nitrogen
 
 You may want a background images for you desktop
-For that you can use `feh` or nitrogen for multiple screen support
+For that you can use `feh` or `nitrogen` for multiple screen support
 
 #### Installation
 ```
