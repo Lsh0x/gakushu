@@ -101,6 +101,17 @@ Sources:
 * https://www.addictivetips.com/ubuntu-linux-tips/set-up-lightdm-on-arch-linux/
 * https://github.com/Litarvan/lightdm-webkit-theme-litarvan
 
+### Termite
+
+Termite is a low ressource terminal emulator
+You can install it with 
+```
+pacman -Sy termite
+```
+
+Sources:
+* https://www.linuxsecrets.com/archlinux-wiki/wiki.archlinux.org/index.php/Termite.html
+
 ### Sound
 
 You should have alsa installed, complete it with pulse-audio
