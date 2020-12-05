@@ -1,18 +1,18 @@
 ## Table of Content
 
-- [Tips](#Tips)
-   - [Adding more luks](#Opening-luks-disk-at-boot-time)
-   - [Luks keys](#Embed-a-keyfile-in-initramfs)
-   - [Share data between arch and window](#Disk-shared-between-window-and-linux)
-   - [Other luks](#Opening-luks-disk-at-boot-time)
-   - [Login customization](#Lightdm-customization)
-   - [Sound](#Sound)
-   - [Pacman hooks](#Pacman-hooks)
-   - [Automated screen display](#Xrandr-to-setup-automatically-the-screen)
-   - [GRUB](#Grub-configuration)
-   - [Picom](#Picom)
-   - [Conky](#Conky)
-   - [Desktop background](#nitrogen)
+- [Adding more luks](#Opening-luks-disk-at-boot-time)
+- [Luks keys](#Embed-a-keyfile-in-initramfs)
+- [Share data between arch and window](#Disk-shared-between-window-and-linux)
+- [Other luks](#Opening-luks-disk-at-boot-time)
+- [Login customization](#Lightdm-customization)
+- [Terminal](#termite)
+- [Sound](#Sound)
+- [Pacman hooks](#Pacman-hooks)
+- [Automated screen display](#Xrandr-to-setup-automatically-the-screen)
+- [GRUB](#Grub-configuration)
+- [Picom](#Picom)
+- [Conky](#Conky)
+- [Desktop background](#nitrogen)
 
 ## Tips
 
