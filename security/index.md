@@ -4,4 +4,4 @@
 
 ### Cryptography
 
-* [GPG](#cryptography/gpg.md)
+* [GPG](cryptography/gpg.md)

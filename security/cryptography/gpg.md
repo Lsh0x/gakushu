@@ -12,5 +12,5 @@ In real life this will be pratical for mail, connections like ssh, commit and lo
 
 ## Best practice
 
-Check this [tutorial](https://github.com/Lsh0x/YubiKey-Guide)
+Check this awsome [tutorial](https://github.com/Lsh0x/YubiKey-Guide#entropy) from [drduh](https://github.com/drduh)
 Even if you don't possede any yubikey the method and generation of the keys is really good
