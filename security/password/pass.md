@@ -1,10 +1,10 @@
 # Introduction
 
-Password is very important, so its safety and complexity too.
-Specially in this time where the power of gpu is increasting and the hashrate too
-Bruteforce and weaks passwords is working, check the number of tentatives using the
-new generation of GPU and hashcat, [3080 benchmark](https://gist.github.com/Chick3nman/bb22b28ec4ddec0cb5f59df97c994db4)
-However if you passwords is generated with a long length, alpha numeric, digits and all, you will be safe.
+Password is very important, so theres safety and complexity too.
+Specially in this time where the power of GPU is increasing and the hashrate too
+Bruteforce on weaks passwords is working, check the number of tentatives per secondes using the
+new generation of GPU and a tools like hashcat, [3080 benchmark](https://gist.github.com/Chick3nman/bb22b28ec4ddec0cb5f59df97c994db4)
+However if your password is generated with a long length, alpha numeric, digits and all, you will be safe.
 
 There is some passwords managers online, from keepass, to bitwarden.
 If found this one, pass, its really simple use GPG, and filesystems, so the dude bind it with git.
