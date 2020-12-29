@@ -10,3 +10,4 @@ Experience and tutorials on divers subjects
 
 * [Using GPG](security/cryptography/gpg.md)
 * [Password manager with GPG](security/cryptography/pass.md)
+* [Processus isolation](security/sandbox/firejail.md)

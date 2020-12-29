@@ -13,6 +13,7 @@
 - [Picom](#Picom)
 - [Conky](#Conky)
 - [Desktop background](#nitrogen)
+- [process isolation](../../security/sandbox/firejail.md)
 
 ## Tips
 
