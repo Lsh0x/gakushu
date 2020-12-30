@@ -414,9 +414,6 @@ cp /root/xorg.conf.new /etc/X11/org.conf
 Source:
 * https://wiki.archlinux.org/index.php/xorg
 
-Tips:
-- [Automated screen display](#Xrandr-to-setup-automatically-the-screen)
-
 
 ### Install GPU Driver
 
@@ -451,9 +448,6 @@ Source:
 * https://wiki.archlinux.org/index.php/LightDM
 
 
-Tips:
-- [Login customization](#Lightdm-customization)
-
 
 ### Window managment
 
@@ -469,11 +463,6 @@ cp /etc/i3/config /home/x/.config/i3/config
 
 Source: 
 * https://www.youtube.com/watch?v=j1I63wGcvU4
-
-[Table of Contents](#Table-of-Content)
-
-Tips:
-- [Sound](#Sound)
 
 ### Finally
 
