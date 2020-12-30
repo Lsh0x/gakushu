@@ -18,12 +18,12 @@ but can add a lot of thing that you might want to install a the installation
    - [Synchronise clock](#Synchronise-clock)
    - [Preparing the disk](#Preparing-the-disk)
    - [Mounting the filesystem](#Mounting-the-filesystem)
-   - [Install system and some needed package](#Install-system-and-some-package)
+   - [Install system and some needed package](#Install-system-and-some-needed-package)
    - [System configuration](#System-configuration)
    - [Chroot mnt](#Chroot)
    - [Update zone info and language](#Update-zone-info-and-language)
    - [Hostname](#Hostname)
-   - [Opening luks disk at boot time](#Opening-luks-disk-at-boot-time)
+   - [Opening luks disk at boot time](tips.md/#Opening-luks-disk-at-boot-time)
    - [Bootloader](#Install-and-setup)
    - [Initramfs](#Prepare-initramfs)
    - [Almost finished](#End-of-installation)
@@ -34,7 +34,6 @@ but can add a lot of thing that you might want to install a the installation
    - [GPU Driver](#Install-GPU-Driver)
    - [Dislay Managment](#Display-managment)
    - [Window Managment](#Window-managment)
-- [Sound](#Sound)
 - [Tips](tips.md)
 
 ## Download the arch and window iso
@@ -415,9 +414,6 @@ cp /root/xorg.conf.new /etc/X11/org.conf
 Source:
 * https://wiki.archlinux.org/index.php/xorg
 
-Tips:
-- [Automated screen display](#Xrandr-to-setup-automatically-the-screen)
-
 
 ### Install GPU Driver
 
@@ -452,9 +448,6 @@ Source:
 * https://wiki.archlinux.org/index.php/LightDM
 
 
-Tips:
-- [Login customization](#Lightdm-customization)
-
 
 ### Window managment
 
@@ -470,11 +463,6 @@ cp /etc/i3/config /home/x/.config/i3/config
 
 Source: 
 * https://www.youtube.com/watch?v=j1I63wGcvU4
-
-[Table of Contents](#Table-of-Content)
-
-Tips:
-- [Sound](#Sound)
 
 ### Finally
 
