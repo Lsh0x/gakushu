@@ -34,7 +34,6 @@ but can add a lot of thing that you might want to install a the installation
    - [GPU Driver](#Install-GPU-Driver)
    - [Dislay Managment](#Display-managment)
    - [Window Managment](#Window-managment)
-- [Sound](#Sound)
 - [Tips](tips.md)
 
 ## Download the arch and window iso
