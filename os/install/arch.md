@@ -18,7 +18,7 @@ but can add a lot of thing that you might want to install a the installation
    - [Synchronise clock](#Synchronise-clock)
    - [Preparing the disk](#Preparing-the-disk)
    - [Mounting the filesystem](#Mounting-the-filesystem)
-   - [Install system and some needed package](#Install-system-and-some-package)
+   - [Install system and some needed package](#Install-system-and-some-needed-package)
    - [System configuration](#System-configuration)
    - [Chroot mnt](#Chroot)
    - [Update zone info and language](#Update-zone-info-and-language)
