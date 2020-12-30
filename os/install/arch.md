@@ -23,7 +23,7 @@ but can add a lot of thing that you might want to install a the installation
    - [Chroot mnt](#Chroot)
    - [Update zone info and language](#Update-zone-info-and-language)
    - [Hostname](#Hostname)
-   - [Opening luks disk at boot time](#Opening-luks-disk-at-boot-time)
+   - [Opening luks disk at boot time](tips.md/#Opening-luks-disk-at-boot-time)
    - [Bootloader](#Install-and-setup)
    - [Initramfs](#Prepare-initramfs)
    - [Almost finished](#End-of-installation)
