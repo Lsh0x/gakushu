@@ -34,7 +34,7 @@ AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 ```
 
 This time we have a segmentation fault, which mean we try to access memory that we not suppose to.
-Basically we override the instruction pointer and try to read somewhere we shouln't. We will dig into it later.
+Basically we override the instruction pointer, called eip for 32bits and rip on 64bits, and try to read somewhere we shouln't. We will dig into it later.
 
 First let's play with that.
 
