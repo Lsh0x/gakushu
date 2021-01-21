@@ -77,17 +77,96 @@ Let dig a bit on what happens for the stack
 #### Stack 
 
 You need to know that the stack is a last in first out aka LIFO
-When you 
+When you add something it go on top and you remove something it's the one on top that will be removed.
+The instruction to do it are `push` and `pop`.
+`push` will add something, and `pop` will remove it
 
+
+The following example will simplify some mechanism but should give a big picture of what happens
+Value will be define in a readable way 
 
 ```c
 int c = 42;
 ```
 This instruction will push the variable on the stack
-The stack go down in addr, meaning it begin at 0xffffffff.
+The stack go down in addr, meaning it begin at 0xffffffff, and then decrease, everytime we push something.
 
-In our example the stack will go until 0xff
+In our example the stack will have a size of 100 bytes, and depending on the architecture an integer take 4 bytes in memory.
+So decreasing `100` by 4 will be `96`
 
 | addr  | value |
 |-------|-------|
-|  0xfb |  42   |
+|  96   |  42   |
+
+The next instruction is :
+```
+char buf[8];
+```
+This time we will push on the stack an array of 8 bytes,
+The stack will now be like:
+
+
+| addr  | value |
+|-------|-------|
+|  88   |  0    |
+|  96   |  42   |
+
+
+Then the gets function come, and will write stuff in the buf varible, so on the stack, it will take the length give as input by the user since no verification have been done by the user. 
+Let's imagine that user just enter `1111`
+So get will write them into buf
+
+
+Now retry this but with `1111111111`
+This time we will have something like
+
+| addr  | value |
+|-------|-------|
+|  88   |  1    |
+|  89   |  1    |
+|  90   |  1    |
+|  91   |  1    |
+|  92   |  1    |
+|  93   |  1    |
+|  94   |  1    |
+|  95   |  1    |
+|  96   |  1    |
+
+So the variable at `96` have been overrided.
+Wait what? my program wasn't printing `1` for `c`
+Indeed, because a integer `int` is on 4 bytes and register works with hexadecimal values so when interpreting the `1` caractere it doesn't see it as the numeric number like we do.
+It have it's own traduction table, called ASCII.
+try: 
+```
+man ascii
+```
+
+#### Hex little endian and big endian
+
+Why not changing the value of `c` but give it the value we want.
+let's try with `1`.
+We need to override the last 4 bytes to set them to the value hex of `1`
+`1` is `0x01` so let's try this.
+Since some caracteres aren't printable, if you check the `ASCII` table you already know.
+A simple python script will help us.
+So first we need to fills the `buf` variable and then the `c` 4 bytes.
+`1` will be `0x00000001` 
+
+```
+python -c 'print "A" * 8 + "\x00\x00\x00\x01"' | ./a.out
+c = 16777216
+```
+
+Wait what !!
+
+We should check this one in hex, `0x1000000`, but we put `0x00000001` why is it the opposite?
+Remember the title? big endian and little endian ? This is the order of how the low-order/high-order byte is store.
+We can see the in the stack the low-order byte is store at the starting address, this is called little endian.
+We, human, are more used to the big endian with the high byte at the staging adress.
+So let's arrange our bytes to make it work
+
+```
+python -c 'print "A" * 8 + "\x01\x00\x00\x00"' | ./a.out
+c = 1
+
+```
