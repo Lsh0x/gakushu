@@ -25,7 +25,7 @@ $ ./a.out
 1234567890
 ```
 
-Nothin right? but we put more that the size, hum weird, let try to put more
+Nothing right? but we put more that the size, hum weird, let try to put more
 ```
 $ ./a.out
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
