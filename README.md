@@ -4,7 +4,9 @@ Experience and tutorials on divers subjects
 
 ## Network
 
-* [Ethernet](network/pcap/ethernet.md)
+### Protocol
+* [Ethernet](network/protocol/ethernet.md)
+* [Arp](network/protocol/arp.md)
 
 ## OS
 
