@@ -18,3 +18,7 @@ Typically ethernet for example
 | Hardware type | Protocol Type | hardware/protocol length | op code | source mac adress | source ip | destination mac adress | destinations ip | 
 |---------------|---------------|--------------------------|---------|-------------------|-----------|------------------------|-----------------|
 | 2 | 2 | 2 | 2 |6 | 4 | 6 | 4 |
+
+Source:
+* file://usr/include/if_arp.h
+* https://en.wikipedia.org/wiki/Address_Resolution_Protocol
