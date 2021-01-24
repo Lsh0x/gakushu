@@ -22,3 +22,4 @@ Experience and tutorials on divers subjects
 ## Hacking
 
 * [Overflow basic](hacking/overflow/basic.md)
+* [Overflow instruction pointer control](hacking/overflow/instruction_pointer.md)
