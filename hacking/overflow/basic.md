@@ -47,12 +47,11 @@ First let's play with that.
 int main()
 {
  
-  int var;
   int i = 42;
   char buf[8];
  
   fgets(buf);
-  printf ("i = %d\n");
+  printf ("i = %d\n", i);
   return 0;
 }
 ```
