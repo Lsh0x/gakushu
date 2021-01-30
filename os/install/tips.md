@@ -12,6 +12,7 @@
 - [GRUB](#Grub-configuration)
 - [Picom](#Picom)
 - [Conky](#Conky)
+- [Rofi](#rofi)
 - [Desktop background](#nitrogen)
 - [process isolation](../../security/sandbox/firejail.md)
 
@@ -313,6 +314,21 @@ Sources:
 * https://wiki.archlinux.org/index.php/conky
 * https://github.com/brndnmtthws/conky/wiki/Configs
 * http://conky.sourceforge.net/variables.html
+
+### Rofi 
+
+#### Installation
+
+Rofi is a window switcher, run dialog ssh launcher highly customizable.
+```
+pacman -Sy rofi
+```
+
+You can then modify it in your `$HOME/.config/rofi/config.rasi`
+And then edit your `i3config` to bind the necessary keys
+
+Sources:
+* https://wiki.archlinux.org/index.php/Rofi
 
 ### Nitrogen
 
