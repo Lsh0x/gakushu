@@ -19,6 +19,31 @@ Typically ethernet for example
 |---------------|---------------|--------------------------|---------|-------------------|-----------|------------------------|-----------------|
 | 2 | 2 | 2 | 2 |6 | 4 | 6 | 4 |
 
+
+### Op code
+
+| Code name | Value |
+|-----------|-------|
+| REQUEST | 0x1 |
+|  REPLY | 0x2 |
+| RREQUEST | 0x3 |
+| RREPLY | 0x4 |
+| InREQUEST | 0x8 |
+| InREPLY | 0x09 |
+| NAK | 0xa |
+
+
+```
+/* ARP protocol opcodes. */
+#define	ARPOP_REQUEST	1		/* ARP request.  */
+#define	ARPOP_REPLY	2		/* ARP reply.  */
+#define	ARPOP_RREQUEST	3		/* RARP request.  */
+#define	ARPOP_RREPLY	4		/* RARP reply.  */
+#define	ARPOP_InREQUEST	8		/* InARP request.  */
+#define	ARPOP_InREPLY	9		/* InARP reply.  */
+#define	ARPOP_NAK	10		/* (ATM)ARP NAK.  */
+```
+
 Source:
 * file://usr/include/if_arp.h
 * https://en.wikipedia.org/wiki/Address_Resolution_Protocol
