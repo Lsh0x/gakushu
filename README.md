@@ -4,6 +4,9 @@ Experience and tutorials on divers subjects
 
 ## Network
 
+### Dns
+* [DNS](network/dns/README.md)
+
 ### Protocol
 * [Ethernet](network/protocol/ethernet.md)
 * [Arp](network/protocol/arp.md)
