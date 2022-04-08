@@ -50,7 +50,7 @@ int main()
   int i = 42;
   char buf[8];
  
-  fgets(buf);
+  gets(buf);
   printf ("i = %d\n", i);
   return 0;
 }
